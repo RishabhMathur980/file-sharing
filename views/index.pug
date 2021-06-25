@@ -1,0 +1,43 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  link(rel="shortcut icon" href="/icons/title logo.png")
+  title File Sharing
+  link(rel='stylesheet' href='/css/style.css')
+img.logo(src='/icons/logo.png' alt='Inshare logo')
+section.upload-container
+  .drop-zone
+    .icon-container
+      img.center(src='/icons/icon1.svg' alt='file icon' draggable='false')
+      img.left(src='/icons/icon1.svg' alt='file icon' draggable='false')
+      img.right(src='/icons/icon1.svg' alt='file icon' draggable='false')
+    form.fileInput
+      input#myfile(type='file' name="myfile")
+      button(type="submit") submit
+      .title
+        | Drop your Files Here or,
+        span.browseBtn Click
+  .sharing-container 
+   -if(data)
+    p.expire Link expire in 24 hrs 
+    .input-container 
+      input#fileInput(type="text" readonly value=`https://cryptic-spire-19231.herokuapp.com/api/files/${data.uuid}` name="fileInput")
+      img#copybtn(src="/icons/copy.svg" alt="copy icon")
+    p Or Send Via Email
+    .email-container 
+      form.email-selector
+        .field 
+          label(for="sender") Your Email 
+          input#sender(type="email" required name="from-email")
+        .field 
+          label(for="receiver") Receiver's Email 
+          input#receiver(type="email" required name="to-email")
+        button(type='submit') Send
+.side-logo
+  img.side-logo1(src='/icons/undraw-upload.svg' alt='Inshare logo')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0-0/axios.min.js')
+script(src='/js/index.js')
+script(src='/js/fileInput.js')
+script(src='/js/email.js')
